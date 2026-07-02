@@ -51,16 +51,16 @@ class CapabilityPolicy:
     Checks whether an agent has the required capability to invoke a tool.
     Policy can be loaded from a JSON file or configured programmatically.
 
-    Default policy: if no explicit policy exists for an agent, all
-    capabilities are granted (open by default). Set ``default_deny=True``
-    to flip to deny-by-default.
+    Security-hardened default: if no explicit policy exists for an agent,
+    capabilities are denied. Pass ``default_deny=False`` only for trusted
+    development/test environments where open-by-default behavior is desired.
     """
 
     def __init__(
         self,
         *,
         policy_path: Optional[str] = None,
-        default_deny: bool = False,
+        default_deny: bool = True,
     ) -> None:
         self._policies: Dict[str, AgentPolicy] = {}
         self._default_deny = default_deny
@@ -83,7 +83,7 @@ class CapabilityPolicy:
         self._rust_impl.grant(agent_id, capability, pattern)
 
     def deny(self, agent_id: str, capability: str) -> None:
-        """Explicitly deny a capability to an agent."""
+        """Explicitly deny a capability."""
         policy = self._policies.setdefault(
             agent_id,
             AgentPolicy(agent_id=agent_id),

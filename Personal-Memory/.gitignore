@@ -1,0 +1,5 @@
+# Keep personal memory files local.
+# This repo is public, so do not commit private notes, credentials, emails, or personal data.
+*
+!.gitignore
+!README.md
