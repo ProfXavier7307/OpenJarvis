@@ -24,7 +24,7 @@ Create local memory files after cloning or installing the project:
 
 The restricted `file_read` tool accepts paths like `profile.md`, `projects/doa.md`, or `Personal-Memory/profile.md`. Path traversal outside `Personal-Memory` is denied.
 
-Do not commit private memory files. This fork is public, and the folder's `.gitignore` is designed to keep your local notes local.
+Do not commit private memory files. This fork is public, and the folder's `.gitignore` is designed to keep your local notes local. The safe pattern is to keep real memory files only on your computer, not in GitHub.
 
 ## Recommended next step
 
